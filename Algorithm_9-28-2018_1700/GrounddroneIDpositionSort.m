@@ -1,4 +1,6 @@
-function [AirDroneLocInMeters] = AirdroneIDpositionSort(AirDroneLocInMeters, AirObservPointCenter);
+function [GroundDroneLocInMeters] = GrounddroneIDpositionSort(GroundDroneLocInMeters, GroundObservPointCenter);
+AirDroneLocInMeters = GroundDroneLocInMeters;
+AirObservPointCenter = GroundObservPointCenter;
 
 % AirDroneLocInMeters(:,1)' = [11 10 63];
 % AirDroneCoordinates = [ 06 05 0; 01 06 0; 20 02 0];
@@ -42,7 +44,7 @@ elseif (AirObservPointCenter(1,1) >= Sx)
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 AirDroneLocInMeters = sortedByPythagoris;
-
+GroundDroneLocInMeters = AirDroneLocInMeters;
 
 
 end

@@ -83,7 +83,7 @@ function varargout = tsp_ga(varargin)
                 rte = optRoute([1:n 1]);
                 if dims > 2, plot3(hAx,xy(rte,2),xy(rte,1),xy(rte,3),'g.-');
                 else
-                    plot(hAx,xy(rte,2),xy(rte,1),'g.-');
+                    plot(hAx,xy(rte,2),xy(rte,1),'k.-','linewidth',3);
                     title(['Calculating Route for Drone ' num2str(userConfig.droneID)],'Fontsize',14)
                     axis equal;
                 end

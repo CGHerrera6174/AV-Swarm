@@ -1,6 +1,15 @@
-function [assignedAirCPlist] = AirWayPointDistributionOpt(numOfAirObservPoints, AirObservPointList, AirDroneStartpoint,numOfAirDrones, AirDroneLocInMeters)
+function [assignedGroundCPlist] = GroundWayPointDistributionOpt(numOfGroundObservPoints, GroundObservPointList, GroundDroneStartpoint,numOfGroundDrones, GroundDroneLocInMeters);               
+%% PART THAT CONVERTS AIR CODE TO GROUND CODE
+numOfAirObservPoints = numOfGroundObservPoints;
+ObsPointlist = GroundObservPointList;
+AirDroneStartpoint = GroundDroneStartpoint;
+numOfAirDrones = numOfGroundDrones;
+AirDroneLocInMeters = GroundDroneLocInMeters;
+
+
+%% PATCH NEEDED FOR LAST SEMESTERS ALGORITHM TO WORK WITH UI
 numberOfAirWayPoints = numOfAirObservPoints;
-WayPointlist = AirObservPointList;
+WayPointlist = ObsPointlist;
 startpoint = AirDroneStartpoint;
 numberOfAirDrones = numOfAirDrones;
 AirDroneCoordinates = AirDroneLocInMeters(:, [2 3 4 1 6]);
@@ -120,6 +129,7 @@ for optCycle = 1 : numberOfAirDrones
             m = m + 1;
             UnsortedGrouping(m,:) = assignedAirCPlist(n,:);
         end
+        1
         UnsortedGrouping = UnsortedGrouping(1:m,:);
     end
     
@@ -228,5 +238,7 @@ for optCycle = 1 : numberOfAirDrones
     distance = [];
 end
 assignedAirCPlist = [SortedGroupList(:,[1 2 3 4 5 6 7 8])];
+assignedGroundCPlist = assignedAirCPlist;
+assignedGroundCPlist(:,4) = 0;
 
 end
