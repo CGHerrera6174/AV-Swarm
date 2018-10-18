@@ -1086,7 +1086,8 @@ if (ACinputError ~= 1)&&(DroneinputError ~= 1)&&(inputError~=1)
     ACLocInMeter = [AirCraftData(:,1), (ACnormLat - GSCnormLat), ( ACnormLon - GSCnormLon),...
         (AirCraftData(:,4)-GroundHeight), AirCraftData(:,5), AirCraftData(:,6)];
     hold off
-    plot3(0,0,0)
+    plot3(0,0,0)    
+    figure('color','w') %TEST PART REMOVE THIS
     hold on
     % C-130 AIRCRAFT OBSERVATION POINT, AND MODEL POPULATION AND VISUALIZATION
     if AirCraftData(:,6) == 2;   %Checks to see if its a C-130
@@ -1695,9 +1696,12 @@ if (StatusMsgGood == 1)
         end
     end
     fclose(DronefileID);
-    %     GCSdata
-    %     AirCraftData
-    % %     DroneData
+    
+    
+    figure('color','w') %TEST PART REMOVE THIS
+    plot3(AirCraftData(:,1),AirCraftData(:,2),AirCraftData(:,3),'*r')
+    figure('color','w') %TEST PART REMOVE THIS
+
     %%%%%%%%%%%%%%%%%%%%%%% CONVERTS INPUT COORDINATES INTO METERS %%%%%%%%%%%%
     Lat = GCSdata(1,1);
     Lon = GCSdata(1,2);
@@ -1932,7 +1936,7 @@ if (StatusMsgGood == 1)
     % Combines lists
     AssignedOPList = [assignedAirCPlist ; assignedGroundCPlist];
     
-    figure('color','w')
+    figure('color','w') %TEST PART REMOVE THIS
     plot3(AssignedOPList(:,3),AssignedOPList(:,2),AssignedOPList(:,4),'*r')
     
     % Prints out the document

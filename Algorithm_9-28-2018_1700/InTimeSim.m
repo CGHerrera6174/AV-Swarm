@@ -28,9 +28,11 @@ for n = 1 : NumberOfObservPoints
     end   
 end
 figure('color','w')
-plot3(ObservPointData(:,2),ObservPointData(:,3),ObservPointData(:,4),'*r')
 hold on
-plot3(DroneData(:,3),DroneData(:,2),DroneData(:,4),'+b')
+plot3(ObservPointData(:,2),ObservPointData(:,3),ObservPointData(:,4),'*r')
+view(90,-90)
+hold on
+plot3(DroneData(:,2),DroneData(:,3),DroneData(:,4),'+b')
 hold off
 
 %% MAKES TABLES OF GROUND AND AIR DRONES
@@ -49,6 +51,7 @@ ObservUTMzone = utmzone;
 ObservPointData(:,3) = y;
 ObservPointData(:,2) = x;
 plot3(ObservPointData(:,2),ObservPointData(:,3),ObservPointData(:,4),'*r')
+view(90,-90)
 for n = 1 : (NumberOfAirDrones+NumberOfGroundDrones)
     if DroneData(n,5) == 2;
         i = i + 1;

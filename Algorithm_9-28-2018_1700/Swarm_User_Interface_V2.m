@@ -1086,7 +1086,7 @@ if (ACinputError ~= 1)&&(DroneinputError ~= 1)&&(inputError~=1)
     ACLocInMeter = [AirCraftData(:,1), (ACnormLat - GSCnormLat), ( ACnormLon - GSCnormLon),...
         (AirCraftData(:,4)-GroundHeight), AirCraftData(:,5), AirCraftData(:,6)];
     hold off
-    plot3(0,0,0)
+    plot3(0,0,0)    
     hold on
     % C-130 AIRCRAFT OBSERVATION POINT, AND MODEL POPULATION AND VISUALIZATION
     if AirCraftData(:,6) == 2;   %Checks to see if its a C-130
@@ -1695,6 +1695,12 @@ if (StatusMsgGood == 1)
         end
     end
     fclose(DronefileID);
+    
+    
+%     figure('color','w') %TEST PART REMOVE THIS
+%     plot3(AirCraftData(:,1),AirCraftData(:,2),AirCraftData(:,3),'*r')
+%     view(90,-90)
+%     figure('color','w') %TEST PART REMOVE THIS
 
     %%%%%%%%%%%%%%%%%%%%%%% CONVERTS INPUT COORDINATES INTO METERS %%%%%%%%%%%%
     Lat = GCSdata(1,1);
@@ -1812,6 +1818,14 @@ if (StatusMsgGood == 1)
         
     %% Begin Plotting things nicely 
     hold off
+    
+%     figure('color','w') %TEST PART REMOVE THIS
+%     plot3(assignedAirCPlist(:,3),assignedAirCPlist(:,2),assignedAirCPlist(:,4),'*r')
+%     hold on %TEST PART REMOVE THIS
+%     plot3(assignedGroundCPlist(:,3),assignedGroundCPlist(:,2),assignedGroundCPlist(:,4),'*r')
+%     view(90,-90) %TEST PART REMOVE THIS
+%     hold off %TEST PART REMOVE THIS
+    
     %Definetaly more efficient way to plot Air Craft Models..... but I'm just to lazy to write it out. SO RECALCULATION IT IS!!!
     if AirCraftData(:,6) == 2;   %Checks to see if its a C-130
         [ObsPointlist] = C130ObservationPointGeneration(ACLocInMeter);
@@ -1906,32 +1920,40 @@ if (StatusMsgGood == 1)
     handles.Status.String = ' Mission Running';
     handles.Status.BackgroundColor = [0 1 0];
     
-    xx = assignedAirCPlist(:,3) + GSCnormLon;
-    yy = assignedAirCPlist(:,2) + GSCnormLat;
+%     figure('color','w') %TEST PART REMOVE THIS
+%     plot3(assignedAirCPlist(:,3),assignedAirCPlist(:,2),assignedAirCPlist(:,4),'*r')
+%     hold on
+%     plot3(assignedGroundCPlist(:,3),assignedGroundCPlist(:,2),assignedGroundCPlist(:,4),'*r')
+%     hold off
+%     view(90,-90) %TEST PART REMOVE THIS
+    
+    xx = assignedAirCPlist(:,2) + GSCnormLon;
+    yy = assignedAirCPlist(:,3) + GSCnormLat;
     for n = 1 : numOfAirObservPoints
         utmzoneM(n,:) = utmzone(1,:);
     end
     utmzone = utmzoneM;
     [Lat,Lon] = utm2deg(xx,yy,utmzone);   
-    assignedAirCPlist(:,3) = Lon;
-    assignedAirCPlist(:,2) = Lat;
+    assignedAirCPlist(:,2) = Lon;
+    assignedAirCPlist(:,3) = Lat;
     
-    xx = assignedGroundCPlist(:,3) + GSCnormLon;
-    yy = assignedGroundCPlist(:,2) + GSCnormLat;
+    xx = assignedGroundCPlist(:,2) + GSCnormLon;
+    yy = assignedGroundCPlist(:,3) + GSCnormLat;
     for n = 1 : numOfGroundObservPoints
         utmzoneM(n,:) = utmzone(1,:);
     end
     utmzone = utmzoneM;
     [Lat,Lon] = utm2deg(xx,yy,utmzone);
-    assignedGroundCPlist(:,3) = Lon;
-    assignedGroundCPlist(:,2) = Lat;
+    assignedGroundCPlist(:,2) = Lon;
+    assignedGroundCPlist(:,3) = Lat;
     
     
     % Combines lists
     AssignedOPList = [assignedAirCPlist ; assignedGroundCPlist];
     
-%     figure('color','w')
+%     figure('color','w') %TEST PART REMOVE THIS
 %     plot3(AssignedOPList(:,3),AssignedOPList(:,2),AssignedOPList(:,4),'*r')
+%     view(90,-90) %TEST PART REMOVE THIS
     
     % Prints out the document
     ObservDocumentFormat = '%4.8f ,\t %4.8f ,\t %4.4f ,\t %4.4f ,\t %d ,\t %d, \r\n';
@@ -1943,12 +1965,12 @@ if (StatusMsgGood == 1)
         numOfAirCraft,numOfAirDrones,numOfGroundDrones);
     fprintf(Dist_List_Text, 'Number of Observ Points = %d, \t Air Observation Points = %d, \t Ground Observation Points = %d, \r\n',...
         NumOfObservPoint,numOfAirObservPoints,numOfGroundObservPoints)
-    fprintf(Dist_List_Text, 'Aircraft ID \t OP Longitude \t OP Lattitude \t');
+    fprintf(Dist_List_Text, 'Aircraft ID \t OP Lattitude \t OP Longitude \t');
     fprintf(Dist_List_Text, ' OP Height \t Cam Azimuth \t Cam Angle \t');
     fprintf(Dist_List_Text, ' Assigned Drone \t Drone Type \t Inspected \t Error \r\n');
     
-    A2 = size(AssignedOPList)
-    OPListSize =A2(1,1)
+    A2 = size(AssignedOPList);
+    OPListSize =A2(1,1);
     for n = 1 : OPListSize
         fprintf(Dist_List_Text, '%d,\t\t\t %4.8f,\t %4.8f,\t %4.6f,\t %4.8f,\t %4.8f,\t %d,\t\t\t\t %d,\t\t\t\t 0,\t\t 0, \r\n',...
             AssignedOPList(n,1),AssignedOPList(n,3),AssignedOPList(n,2),AssignedOPList(n,4),...
@@ -1963,12 +1985,12 @@ if (StatusMsgGood == 1)
         numOfAirCraft,numOfAirDrones,numOfGroundDrones);
     fprintf(Dist_List_Text2, 'Number of Observ Points = %d, \t Air Observation Points = %d, \t Ground Observation Points = %d, \r\n',...
         NumOfObservPoint,numOfAirObservPoints,numOfGroundObservPoints)
-    fprintf(Dist_List_Text2, 'Aircraft ID \t OP Longitude \t OP Lattitude \t');
+    fprintf(Dist_List_Text2, 'Aircraft ID \t OP Lattitude \t OP Longitude \t');
     fprintf(Dist_List_Text2, ' OP Height \t Cam Azimuth \t Cam Angle \t');
     fprintf(Dist_List_Text2, ' Assigned Drone \t Drone Type \t Inspected \t Error \r\n');
     
-    A2 = size(AssignedOPList)
-    OPListSize =A2(1,1)
+    A2 = size(AssignedOPList);
+    OPListSize =A2(1,1);
     for n = 1 : OPListSize
         fprintf(Dist_List_Text2, '%d,\t\t %4.8f,\t %4.8f,\t %4.6f,\t %4.8f,\t %4.8f,\t   %d,\t\t   %d,\t\t   0,\t\t   0, \r\n',...
             AssignedOPList(n,1),AssignedOPList(n,3),AssignedOPList(n,2),AssignedOPList(n,4),...
@@ -1978,8 +2000,8 @@ if (StatusMsgGood == 1)
     
     
     Dist_List_Text3 = fopen('Observation_Point_Distribution_Version3.txt','w'); 
-    A2 = size(AssignedOPList)
-    OPListSize =A2(1,1)
+    A2 = size(AssignedOPList);
+    OPListSize =A2(1,1);
     fprintf(Dist_List_Text3,'NumberOfAC, %d, \r\n',numOfAirCraft);    
     fprintf(Dist_List_Text3,'NumberOfAirDrones, %d, \r\n',numOfAirDrones);
     fprintf(Dist_List_Text3,'NumberOfGroundDrones, %d, \r\n',numOfGroundDrones);
@@ -2000,7 +2022,7 @@ if (StatusMsgGood == 1)
         fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'AssignedDrone, %d, \r\n'],AssignedOPList(n,8));        
         fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'AssignedDroneType, %d,\r\n'],AssignedOPList(n,7));        
         fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'Inspected, 0, \r\n']);      
-        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'ErrorFlag, 0, \r\n\']);
+        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'ErrorFlag, 0, \r\n']);
     end
     fclose(Dist_List_Text3)
     
@@ -2015,12 +2037,12 @@ if (StatusMsgGood == 1)
             DroneData(n,3),DroneData(n,4),DroneData(n,6));
     end
     
-    fprintf(Dist_List_Text4, 'Aircraft_ID \t OP_Longitude \t OP_Lattitude \t');
+    fprintf(Dist_List_Text4, 'Aircraft_ID \t OP_Lattitude \t OP_Longitude \t');
     fprintf(Dist_List_Text4, ' OP_Height \t Cam_Azimuth \t Cam_Angle \t');
     fprintf(Dist_List_Text4, ' Assigned_Drone \t Drone_Type \t Inspected \t Error \r\n');
     
-    A2 = size(AssignedOPList)
-    OPListSize =A2(1,1)
+    A2 = size(AssignedOPList);
+    OPListSize =A2(1,1);
     for n = 1 : OPListSize
         fprintf(Dist_List_Text4, '%d,\t\t %4.8f,\t %4.8f,\t %4.6f,\t %4.8f,\t %4.8f,\t   %d,\t\t   %d,\t\t   0,\t\t   0, \r\n',...
             AssignedOPList(n,1),AssignedOPList(n,3),AssignedOPList(n,2),AssignedOPList(n,4),...
@@ -2030,7 +2052,7 @@ if (StatusMsgGood == 1)
     
     
 end
-3
+
 
 
 % --- Executes during object creation, after setting all properties.
