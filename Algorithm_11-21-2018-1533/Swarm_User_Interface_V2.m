@@ -22,16 +22,16 @@ function varargout = Swarm_User_Interface_V2(varargin)
 
 % Edit the above text to modify the response to help Swarm_User_Interface_V2
 
-% Last Modified by GUIDE v2.5 28-Sep-2018 16:40:16
+% Last Modified by GUIDE v2.5 22-Oct-2018 15:48:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
-                   'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @Swarm_User_Interface_V2_OpeningFcn, ...
-                   'gui_OutputFcn',  @Swarm_User_Interface_V2_OutputFcn, ...
-                   'gui_LayoutFcn',  [] , ...
-                   'gui_Callback',   []);
+    'gui_Singleton',  gui_Singleton, ...
+    'gui_OpeningFcn', @Swarm_User_Interface_V2_OpeningFcn, ...
+    'gui_OutputFcn',  @Swarm_User_Interface_V2_OutputFcn, ...
+    'gui_LayoutFcn',  [] , ...
+    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
     gui_State.gui_Callback = str2func(varargin{1});
 end
@@ -63,7 +63,7 @@ guidata(hObject, handles);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = Swarm_User_Interface_V2_OutputFcn(hObject, eventdata, handles) 
+function varargout = Swarm_User_Interface_V2_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -455,7 +455,7 @@ function Save_Button_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 % AC_Table_i = 0;
 % mathOperator = ["+","-","*","/","!","@","<",">","?","\","|"];
-inputError = 0;  
+inputError = 0;
 handles.Status.String = 'Input Information';
 ACinfoFormat = '%4.8f ,\t %4.8f ,\t %4.4f ,\t %4.4f ,\t %d ,\t %d, \r\n';
 DroneinfoFormat = '%4.8f, \t %4.8f, \t %4.4f, \t %4.4f, \t %d, \r\n';
@@ -465,13 +465,13 @@ handles.GCS_Lat.BackgroundColor = [1 1 1];
 handles.GCS_Lon.BackgroundColor = [1 1 1];
 handles.GCS_Height.BackgroundColor = [1 1 1];
 if isnan(str2double(handles.GCS_Lat.String))
-    handles.GCS_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+    handles.GCS_Lat.BackgroundColor = [1 0 0]; inputError = 1;
 end
 if isnan(str2double(handles.GCS_Lon.String))
-    handles.GCS_Lon.BackgroundColor = [1 0 0]; inputError = 1;       
+    handles.GCS_Lon.BackgroundColor = [1 0 0]; inputError = 1;
 end
 if isnan(str2double(handles.GCS_Height.String))
-    handles.GCS_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+    handles.GCS_Height.BackgroundColor = [1 0 0]; inputError = 1;
 end
 fprintf(GCS_Info_Text,'%s \t %s \t %s\r\n',handles.GCS_Lat.String,...
     handles.GCS_Lon.String,handles.GCS_Height.String);
@@ -497,19 +497,19 @@ if AC1Type == 2
     handles.AC_1_Azimuth.BackgroundColor = [1 1 1];
     handles.AC_1_Buno.BackgroundColor = [1 1 1];
     if isnan(AC1Lat)
-        handles.AC_1_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_1_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC1Long)
-        handles.AC_1_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_1_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC1Height)
-        handles.AC_1_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_1_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC1Azimuth)
-        handles.AC_1_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_1_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC1Buno)
-        handles.AC_1_Buno.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_1_Buno.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         AC1_info = [AC1Lat, AC1Long, AC1Height, AC1Azimuth, AC1Buno,AC1Type];
@@ -528,19 +528,19 @@ if AC2Type == 2
     handles.AC_2_Azimuth.BackgroundColor = [1 1 1];
     handles.AC_2_Buno.BackgroundColor = [1 1 1];
     if isnan(AC2Lat)
-        handles.AC_2_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_2_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC2Long)
-        handles.AC_2_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_2_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC2Height)
-        handles.AC_2_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_2_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC2Azimuth)
-        handles.AC_2_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_2_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC2Buno)
-        handles.AC_2_Buno.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_2_Buno.BackgroundColor = [1 0 0]; inputError = 1;
     end
     AC2_info = [AC2Lat, AC2Long, AC2Height, AC2Azimuth, AC2Buno,AC2Type];
     fprintf(AC_Info_Text, ACinfoFormat, AC2_info')
@@ -557,22 +557,22 @@ if AC3Type == 2
     handles.AC_3_Azimuth.BackgroundColor = [1 1 1];
     handles.AC_3_Buno.BackgroundColor = [1 1 1];
     if isnan(AC3Lat)
-        handles.AC_3_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_3_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC3Long)
-        handles.AC_3_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_3_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC3Height)
-        handles.AC_3_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_3_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC3Azimuth)
-        handles.AC_3_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_3_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC3Buno)
-        handles.AC_3_Buno.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_3_Buno.BackgroundColor = [1 0 0]; inputError = 1;
     end
     AC3_info = [AC3Lat, AC3Long, AC3Height, AC3Azimuth, AC3Buno,AC3Type];
-    fprintf(AC_Info_Text, ACinfoFormat, AC3_info)    
+    fprintf(AC_Info_Text, ACinfoFormat, AC3_info)
 end
 if AC4Type == 2
     AC4Lat = str2double(handles.AC_4_Lat.String);
@@ -586,22 +586,22 @@ if AC4Type == 2
     handles.AC_4_Azimuth.BackgroundColor = [1 1 1];
     handles.AC_4_Buno.BackgroundColor = [1 1 1];
     if isnan(AC4Lat)
-        handles.AC_4_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_4_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC4Long)
-        handles.AC_4_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_4_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC4Height)
-        handles.AC_4_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_4_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC4Azimuth)
-        handles.AC_4_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_4_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC4Buno)
-        handles.AC_4_Buno.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_4_Buno.BackgroundColor = [1 0 0]; inputError = 1;
     end
     AC4_info = [AC4Lat, AC4Long, AC4Height, AC4Azimuth, AC4Buno,AC4Type];
-    fprintf(AC_Info_Text, ACinfoFormat, AC4_info')    
+    fprintf(AC_Info_Text, ACinfoFormat, AC4_info')
 end
 if AC5Type == 2
     AC5Lat = str2double(handles.AC_5_Lat.String);
@@ -615,22 +615,22 @@ if AC5Type == 2
     handles.AC_5_Azimuth.BackgroundColor = [1 1 1];
     handles.AC_5_Buno.BackgroundColor = [1 1 1];
     if isnan(AC5Lat)
-        handles.AC_5_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_5_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC5Long)
-        handles.AC_5_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_5_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC5Height)
-        handles.AC_5_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_5_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC5Azimuth)
-        handles.AC_5_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_5_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC5Buno)
-        handles.AC_5_Buno.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_5_Buno.BackgroundColor = [1 0 0]; inputError = 1;
     end
     AC5_info = [AC5Lat, AC5Long, AC5Height, AC5Azimuth, AC5Buno,AC5Type];
-    fprintf(AC_Info_Text, ACinfoFormat, AC5_info)    
+    fprintf(AC_Info_Text, ACinfoFormat, AC5_info)
 end
 if AC6Type == 2
     AC6Lat = str2double(handles.AC_6_Lat.String);
@@ -644,51 +644,51 @@ if AC6Type == 2
     handles.AC_6_Azimuth.BackgroundColor = [1 1 1];
     handles.AC_6_Buno.BackgroundColor = [1 1 1];
     if isnan(AC6Lat)
-        handles.AC_6_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_6_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC6Long)
-        handles.AC_6_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_6_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC6Height)
-        handles.AC_6_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_6_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC6Azimuth)
-        handles.AC_6_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_6_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC6Buno)
-        handles.AC_6_Buno.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_6_Buno.BackgroundColor = [1 0 0]; inputError = 1;
     end
     AC6_info = [AC6Lat, AC6Long, AC6Height, AC6Azimuth, AC6Buno,AC6Type];
-    fprintf(AC_Info_Text, ACinfoFormat, AC6_info)    
+    fprintf(AC_Info_Text, ACinfoFormat, AC6_info)
 end
 if AC7Type == 2
     AC7Lat = str2double(handles.AC_7_Lat.String);
     AC7Long = str2double(handles.AC_7_Long.String);
     AC7Height = str2double(handles.AC_7_Height.String);
     AC7Azimuth = str2double(handles.AC_7_Azimuth.String);
-    AC7Buno = str2double(handles.AC_7_Buno.String);   
+    AC7Buno = str2double(handles.AC_7_Buno.String);
     handles.AC_7_Lat.BackgroundColor = [1 1 1];
     handles.AC_7_Long.BackgroundColor = [1 1 1];
     handles.AC_7_Height.BackgroundColor = [1 1 1];
     handles.AC_7_Azimuth.BackgroundColor = [1 1 1];
     handles.AC_7_Buno.BackgroundColor = [1 1 1];
     if isnan(AC7Lat)
-        handles.AC_7_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_7_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC7Long)
-        handles.AC_7_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_7_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC7Height)
-        handles.AC_7_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_7_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC7Azimuth)
-        handles.AC_7_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_7_Azimuth.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(AC7Buno)
-        handles.AC_7_Buno.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.AC_7_Buno.BackgroundColor = [1 0 0]; inputError = 1;
     end
     AC7_info = [AC7Lat, AC7Long, AC7Height, AC7Azimuth, AC7Buno,AC7Type];
-    fprintf(AC_Info_Text, ACinfoFormat, AC7_info)    
+    fprintf(AC_Info_Text, ACinfoFormat, AC7_info)
 end
 %% %%%%%%%%%%%%%%%% SAVES INFORMATION INSPECTION DRONES  %%%%%%%%%%%%%%%%%%
 Drone1Type = handles.Drone_1_Type.Value;
@@ -713,16 +713,16 @@ if Drone1Type ~= 1
     handles.Drone_1_Height.BackgroundColor = [1 1 1];
     handles.Drone_1_ID.BackgroundColor = [1 1 1];
     if isnan(Drone1Lat)
-        handles.Drone_1_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_1_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone1Long)
-        handles.Drone_1_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_1_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone1Height)
-        handles.Drone_1_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_1_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone1ID)
-        handles.Drone_1_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_1_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone1_info = [Drone1Lat, Drone1Long, Drone1Height, Drone1ID,Drone1Type];
@@ -739,16 +739,16 @@ if Drone2Type ~= 1
     handles.Drone_2_Height.BackgroundColor = [1 1 1];
     handles.Drone_2_ID.BackgroundColor = [1 1 1];
     if isnan(Drone2Lat)
-        handles.Drone_2_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_2_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone2Long)
-        handles.Drone_2_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_2_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone2Height)
-        handles.Drone_2_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_2_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone2ID)
-        handles.Drone_2_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_2_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone2_info = [Drone2Lat, Drone2Long, Drone2Height, Drone2ID,Drone2Type];
@@ -765,16 +765,16 @@ if Drone3Type ~= 1
     handles.Drone_3_Height.BackgroundColor = [1 1 1];
     handles.Drone_3_ID.BackgroundColor = [1 1 1];
     if isnan(Drone3Lat)
-        handles.Drone_3_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_3_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone3Long)
-        handles.Drone_3_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_3_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone3Height)
-        handles.Drone_3_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_3_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone3ID)
-        handles.Drone_3_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_3_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone3_info = [Drone3Lat, Drone3Long, Drone3Height, Drone3ID,Drone3Type];
@@ -791,16 +791,16 @@ if Drone4Type ~= 1
     handles.Drone_4_Height.BackgroundColor = [1 1 1];
     handles.Drone_4_ID.BackgroundColor = [1 1 1];
     if isnan(Drone4Lat)
-        handles.Drone_4_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_4_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone4Long)
-        handles.Drone_4_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_4_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone4Height)
-        handles.Drone_4_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_4_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone4ID)
-        handles.Drone_4_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_4_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone4_info = [Drone4Lat, Drone4Long, Drone4Height, Drone4ID,Drone4Type];
@@ -817,16 +817,16 @@ if Drone5Type ~= 1
     handles.Drone_5_Height.BackgroundColor = [1 1 1];
     handles.Drone_5_ID.BackgroundColor = [1 1 1];
     if isnan(Drone5Lat)
-        handles.Drone_5_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_5_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone5Long)
-        handles.Drone_5_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_5_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone5Height)
-        handles.Drone_5_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_5_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone5ID)
-        handles.Drone_5_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_5_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone5_info = [Drone5Lat, Drone5Long, Drone5Height, Drone5ID,Drone5Type];
@@ -843,16 +843,16 @@ if Drone6Type ~= 1
     handles.Drone_6_Height.BackgroundColor = [1 1 1];
     handles.Drone_6_ID.BackgroundColor = [1 1 1];
     if isnan(Drone6Lat)
-        handles.Drone_6_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_6_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone6Long)
-        handles.Drone_6_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_6_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone6Height)
-        handles.Drone_6_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_6_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone6ID)
-        handles.Drone_6_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_6_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone6_info = [Drone6Lat, Drone6Long, Drone6Height, Drone6ID,Drone6Type];
@@ -869,16 +869,16 @@ if Drone7Type ~= 1
     handles.Drone_7_Height.BackgroundColor = [1 1 1];
     handles.Drone_7_ID.BackgroundColor = [1 1 1];
     if isnan(Drone7Lat)
-        handles.Drone_7_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_7_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone7Long)
-        handles.Drone_7_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_7_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone7Height)
-        handles.Drone_7_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_7_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone7ID)
-        handles.Drone_7_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_7_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone7_info = [Drone7Lat, Drone7Long, Drone7Height, Drone7ID,Drone7Type];
@@ -895,16 +895,16 @@ if Drone8Type ~= 1
     handles.Drone_8_Height.BackgroundColor = [1 1 1];
     handles.Drone_8_ID.BackgroundColor = [1 1 1];
     if isnan(Drone8Lat)
-        handles.Drone_8_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_8_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone8Long)
-        handles.Drone_8_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_8_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone8Height)
-        handles.Drone_8_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_8_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone8ID)
-        handles.Drone_8_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_8_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone8_info = [Drone8Lat, Drone8Long, Drone8Height, Drone8ID,Drone8Type];
@@ -921,16 +921,16 @@ if Drone9Type ~= 1
     handles.Drone_9_Height.BackgroundColor = [1 1 1];
     handles.Drone_9_ID.BackgroundColor = [1 1 1];
     if isnan(Drone9Lat)
-        handles.Drone_9_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_9_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone9Long)
-        handles.Drone_9_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_9_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone9Height)
-        handles.Drone_9_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_9_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone9ID)
-        handles.Drone_9_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_9_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone9_info = [Drone9Lat, Drone9Long, Drone9Height, Drone9ID,Drone9Type];
@@ -947,16 +947,16 @@ if Drone10Type ~= 1
     handles.Drone_10_Height.BackgroundColor = [1 1 1];
     handles.Drone_10_ID.BackgroundColor = [1 1 1];
     if isnan(Drone10Lat)
-        handles.Drone_10_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_10_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone10Long)
-        handles.Drone_10_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_10_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone10Height)
-        handles.Drone_10_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_10_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone10ID)
-        handles.Drone_10_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_10_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone10_info = [Drone10Lat, Drone10Long, Drone10Height, Drone10ID,Drone10Type];
@@ -973,16 +973,16 @@ if Drone11Type ~= 1
     handles.Drone_11_Height.BackgroundColor = [1 1 1];
     handles.Drone_11_ID.BackgroundColor = [1 1 1];
     if isnan(Drone11Lat)
-        handles.Drone_11_Lat.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_11_Lat.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone11Long)
-        handles.Drone_11_Long.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_11_Long.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone11Height)
-        handles.Drone_11_Height.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_11_Height.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if isnan(Drone11ID)
-        handles.Drone_11_ID.BackgroundColor = [1 0 0]; inputError = 1;       
+        handles.Drone_11_ID.BackgroundColor = [1 0 0]; inputError = 1;
     end
     if (inputError == 0)
         Drone11_info = [Drone11Lat, Drone11Long, Drone11Height, Drone11ID,Drone11Type];
@@ -1086,7 +1086,7 @@ if (ACinputError ~= 1)&&(DroneinputError ~= 1)&&(inputError~=1)
     ACLocInMeter = [AirCraftData(:,1), (ACnormLat - GSCnormLat), ( ACnormLon - GSCnormLon),...
         (AirCraftData(:,4)-GroundHeight), AirCraftData(:,5), AirCraftData(:,6)];
     hold off
-    plot3(0,0,0)    
+    plot3(0,0,0)
     hold on
     % C-130 AIRCRAFT OBSERVATION POINT, AND MODEL POPULATION AND VISUALIZATION
     if AirCraftData(:,6) == 2;   %Checks to see if its a C-130
@@ -1117,7 +1117,7 @@ if (ACinputError ~= 1)&&(DroneinputError ~= 1)&&(inputError~=1)
         if (DroneLocInMeter(i,6) == 2)
             n1 = n1 + 1;
             AirDroneLocInMeters(n1,:) = DroneLocInMeter(i,:);
-            plot3(AirDroneLocInMeters(n1,3),AirDroneLocInMeters(n1,2),AirDroneLocInMeters(n1,4),'xb','linewidth',4);         
+            plot3(AirDroneLocInMeters(n1,3),AirDroneLocInMeters(n1,2),AirDroneLocInMeters(n1,4),'xb','linewidth',4);
         end
         if (DroneLocInMeter(i,6) == 3)
             n2 = n2 + 1;
@@ -1126,14 +1126,14 @@ if (ACinputError ~= 1)&&(DroneinputError ~= 1)&&(inputError~=1)
         end
     end
     hold off
-%      AirDroneLocInMeters
-%      GroundDroneLocInMeters
-%     1
-%     % DRONE POPULATION AND VISUALIZATION
-%     NumAirDrones = size(AirDroneLocInMeters)
-%     for i = 1 : NumAirDrones(1,1)
-%         i
-%     end
+    %      AirDroneLocInMeters
+    %      GroundDroneLocInMeters
+    %     1
+    %     % DRONE POPULATION AND VISUALIZATION
+    %     NumAirDrones = size(AirDroneLocInMeters)
+    %     for i = 1 : NumAirDrones(1,1)
+    %         i
+    %     end
 end
 
 
@@ -1697,11 +1697,11 @@ if (StatusMsgGood == 1)
     fclose(DronefileID);
     
     
-%     figure('color','w') %TEST PART REMOVE THIS
-%     plot3(AirCraftData(:,1),AirCraftData(:,2),AirCraftData(:,3),'*r')
-%     view(90,-90)
-%     figure('color','w') %TEST PART REMOVE THIS
-
+    %     figure('color','w') %TEST PART REMOVE THIS
+    %     plot3(AirCraftData(:,1),AirCraftData(:,2),AirCraftData(:,3),'*r')
+    %     view(90,-90)
+    %     figure('color','w') %TEST PART REMOVE THIS
+    
     %%%%%%%%%%%%%%%%%%%%%%% CONVERTS INPUT COORDINATES INTO METERS %%%%%%%%%%%%
     Lat = GCSdata(1,1);
     Lon = GCSdata(1,2);
@@ -1724,18 +1724,18 @@ if (StatusMsgGood == 1)
     [x,y,utmzone] = deg2utm(Lat,Lon);
     ACnormLat = y;
     ACnormLon = x;
-
-   
+    
+    
     ACLocInMeter = [AirCraftData(:,1), (ACnormLat - GSCnormLat), ( ACnormLon - GSCnormLon),...
         (AirCraftData(:,4)-GroundHeight), AirCraftData(:,5), AirCraftData(:,6)];
     hold off
-    plot3(0,0,0)   
+    plot3(0,0,0)
     hold on
     % C-130 AIRCRAFT OBSERVATION POINT, AND MODEL POPULATION AND VISUALIZATION
     if AirCraftData(:,6) == 2;   %Checks to see if its a C-130
         [ObsPointlist] = C130ObservationPointGeneration(ACLocInMeter);
     end
-
+    
     
     DroneDataTemp(:,1) = DroneData(:,4);  %AC ID
     DroneDataTemp(:,2) = DroneData(:,1);  %AC Lattitude
@@ -1776,7 +1776,7 @@ if (StatusMsgGood == 1)
     
     %% INITIAL PATH DISTRIBUTION CALCULATIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     A = size(ObsPointlist);
-    NumOfObservPoint = A(1,1); 
+    NumOfObservPoint = A(1,1);
     i = 0;
     k = 0;
     numOfAirObservPoints = 0;
@@ -1789,7 +1789,7 @@ if (StatusMsgGood == 1)
             i = i +1;
             numOfAirObservPoints = numOfAirObservPoints +1;
             AirObservPointList(i,:) = ObsPointlist(n,:);
-        end  
+        end
         if (ObsPointlist(n,4) <= GroundDroneInspectionThreshold)
             k = k +1;
             numOfGroundObservPoints = numOfGroundObservPoints +1;
@@ -1797,39 +1797,40 @@ if (StatusMsgGood == 1)
         end
     end
     
-
-    if (numOfAirObservPoints ~= 0)
+    
+    if (numOfAirObservPoints ~= 0)&&(numOfAirDrones ~= 0)
         AirDroneStartpoint = [ mean(AirDroneLocInMeters(:,2)) mean(AirDroneLocInMeters(:,3)) 0];
         plot3(AirDroneStartpoint(:,2),AirDroneStartpoint(:,1),AirDroneStartpoint(:,3),'xk','linewidth',3)
         AirObservPointCenter = [mean(AirObservPointList(:,2)) mean(AirObservPointList(:,3)) mean(AirObservPointList(:,4))];
         plot3(AirObservPointCenter(:,1),AirObservPointCenter(:,2),AirObservPointCenter(:,3),'ok','linewidth',3)
         [AirDroneLocInMeters] = AirdroneIDpositionSort(AirDroneLocInMeters, AirObservPointCenter);
-        [assignedAirCPlist] = AirWayPointDistributionOpt(numOfAirObservPoints, AirObservPointList, AirDroneStartpoint,numOfAirDrones, AirDroneLocInMeters);             
+        [assignedAirCPlist] = AirWayPointDistributionOpt(numOfAirObservPoints, AirObservPointList, AirDroneStartpoint,numOfAirDrones, AirDroneLocInMeters);
+        assignedAirCPlist(:,7) = 2;
     end
-    if (numOfGroundObservPoints ~= 0)
+    if (numOfGroundObservPoints ~= 0)&&(numOfGroundDrones ~= 0)
         GroundDroneStartpoint = [ mean(GroundDroneLocInMeters(:,2)) mean(GroundDroneLocInMeters(:,3)) 0];
         plot3(GroundDroneStartpoint(:,2),GroundDroneStartpoint(:,1),GroundDroneStartpoint(:,3),'xk','linewidth',3)
         GroundObservPointCenter = [mean(GroundObservPointList(:,2)) mean(GroundObservPointList(:,3)) mean(GroundObservPointList(:,4))];
         plot3(GroundObservPointCenter(:,1),GroundObservPointCenter(:,2),GroundObservPointCenter(:,3),'ok','linewidth',3)
         [GroundDroneLocInMeters] = GrounddroneIDpositionSort(GroundDroneLocInMeters, GroundObservPointCenter);
-        [assignedGroundCPlist] = GroundWayPointDistributionOpt(numOfGroundObservPoints, GroundObservPointList, GroundDroneStartpoint,numOfGroundDrones, GroundDroneLocInMeters);               
-       
+        [assignedGroundCPlist] = GroundWayPointDistributionOpt(numOfGroundObservPoints, GroundObservPointList, GroundDroneStartpoint,numOfGroundDrones, GroundDroneLocInMeters);
+        assignedGroundCPlist(:,7) = 3;
     end
-        
-    %% Begin Plotting things nicely 
+    
+    %% Begin Plotting things nicely
     hold off
     
-%     figure('color','w') %TEST PART REMOVE THIS
-%     plot3(assignedAirCPlist(:,3),assignedAirCPlist(:,2),assignedAirCPlist(:,4),'*r')
-%     hold on %TEST PART REMOVE THIS
-%     plot3(assignedGroundCPlist(:,3),assignedGroundCPlist(:,2),assignedGroundCPlist(:,4),'*r')
-%     view(90,-90) %TEST PART REMOVE THIS
-%     hold off %TEST PART REMOVE THIS
+    %     figure('color','w') %TEST PART REMOVE THIS
+    %     plot3(assignedAirCPlist(:,3),assignedAirCPlist(:,2),assignedAirCPlist(:,4),'*r')
+    %     hold on %TEST PART REMOVE THIS
+    %     plot3(assignedGroundCPlist(:,3),assignedGroundCPlist(:,2),assignedGroundCPlist(:,4),'*r')
+    %     view(90,-90) %TEST PART REMOVE THIS
+    %     hold off %TEST PART REMOVE THIS
     
     %Definetaly more efficient way to plot Air Craft Models..... but I'm just to lazy to write it out. SO RECALCULATION IT IS!!!
     if AirCraftData(:,6) == 2;   %Checks to see if its a C-130
         [ObsPointlist] = C130ObservationPointGeneration(ACLocInMeter);
-    end 
+    end
     hold on
     if numOfAirDrones ~= 0;
         plot3(AirDroneLocInMeters(:,3),AirDroneLocInMeters(:,2),AirDroneLocInMeters(:,4),'xb','linewidth',4);
@@ -1840,44 +1841,47 @@ if (StatusMsgGood == 1)
     
     %% PLOTS LINES THAT SHOW THE WayPointS PATHS
     %%%%%%%%%%%%%%%%% PLOTS GROUND DRONE PATHS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    currentdroneID = assignedAirCPlist(1,8);
-    nextDroneID = currentdroneID;
-    n = 0;
-    m = 0;
-    count = 1;
-    for i = 1 : numOfAirDrones
-        AirdroneLinex = 0; % craeates and Resets the x-list of coordinates
-        AirdroneLiney = 0; % craeates and Resets the y-list of coordinates
-        AirdroneLinez = 0; % craeates and Resets the z-list of coordinates
-        while currentdroneID == nextDroneID % Runs while drone ID (COLUMN 5 of AirCPList) is the same
-            n = n +1;
-            m = m +1;
-            AirdroneLinex(m,1) = assignedAirCPlist(n,2); % Extracts X part of AirCP list
-            AirdroneLiney(m,1) = assignedAirCPlist(n,3); % Extracts Y part of AirCP list
-            AirdroneLinez(m,1) = assignedAirCPlist(n,4); % Extracts Z part of AirCP list
-            
-            
-            if ( n < length( assignedAirCPlist(:,1) ) ) % Here to prevent overflow of matrix
-                nextDroneID = assignedAirCPlist(n+1,8);
-            else
-                nextDroneID = 0; %HERE
-            end
-        end % Once new drone ID reached, it will break the while loop and plot that set of WayPoints
-        hold on;
+    if numOfAirDrones ~= 0
+        currentdroneID = assignedAirCPlist(1,8);
+        nextDroneID = currentdroneID;
+        n = 0;
         m = 0;
-        % ADDS THE ASSIGNED DRONE POSITION AS ORIGIN AND FINAL DESTINATION
-        AirdroneLinex2 = [ AirDroneLocInMeters(i,3) ; AirdroneLinex ; AirDroneLocInMeters(i,3) ];
-        AirdroneLiney2 = [ AirDroneLocInMeters(i,2) ; AirdroneLiney ; AirDroneLocInMeters(i,2) ];
-        AirdroneLinez2 = [ AirDroneLocInMeters(i,4) ; AirdroneLinez ; AirDroneLocInMeters(i,4) ];
-        % PLOTS THE LINES
-        plot3(AirdroneLinex2,AirdroneLiney2,AirdroneLinez2,'linewidth',2) ;
-        view(0,90)
-        if ( i >= numOfAirDrones)
-        else
-            currentdroneID = AirDroneLocInMeters(i+1,1);
-        end      
+        count = 1;
+        for i = 1 : numOfAirDrones
+            AirdroneLinex = 0; % craeates and Resets the x-list of coordinates
+            AirdroneLiney = 0; % craeates and Resets the y-list of coordinates
+            AirdroneLinez = 0; % craeates and Resets the z-list of coordinates
+            while currentdroneID == nextDroneID % Runs while drone ID (COLUMN 5 of AirCPList) is the same
+                n = n +1;
+                m = m +1;
+                AirdroneLinex(m,1) = assignedAirCPlist(n,2); % Extracts X part of AirCP list
+                AirdroneLiney(m,1) = assignedAirCPlist(n,3); % Extracts Y part of AirCP list
+                AirdroneLinez(m,1) = assignedAirCPlist(n,4); % Extracts Z part of AirCP list
+                
+                
+                if ( n < length( assignedAirCPlist(:,1) ) ) % Here to prevent overflow of matrix
+                    nextDroneID = assignedAirCPlist(n+1,8);
+                else
+                    nextDroneID = 0; %HERE
+                end
+            end % Once new drone ID reached, it will break the while loop and plot that set of WayPoints
+            hold on;
+            m = 0;
+            % ADDS THE ASSIGNED DRONE POSITION AS ORIGIN AND FINAL DESTINATION
+            AirdroneLinex2 = [ AirDroneLocInMeters(i,3) ; AirdroneLinex ; AirDroneLocInMeters(i,3) ];
+            AirdroneLiney2 = [ AirDroneLocInMeters(i,2) ; AirdroneLiney ; AirDroneLocInMeters(i,2) ];
+            AirdroneLinez2 = [ AirDroneLocInMeters(i,4) ; AirdroneLinez ; AirDroneLocInMeters(i,4) ];
+            % PLOTS THE LINES
+            plot3(AirdroneLinex2,AirdroneLiney2,AirdroneLinez2,'linewidth',2) ;
+            view(0,90)
+            if ( i >= numOfAirDrones)
+            else
+                currentdroneID = AirDroneLocInMeters(i+1,1);
+            end
+        end
     end
     %%%%%%%%%%%%%%%%% PLOTS GROUND DRONE PATHS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %     if numOfGroundDrones ~= 0
     currentdroneID = assignedGroundCPlist(1,8);
     nextDroneID = currentdroneID;
     n = 0;
@@ -1913,51 +1917,58 @@ if (StatusMsgGood == 1)
         if ( i >= numOfGroundDrones)
         else
             currentdroneID = GroundDroneLocInMeters(i+1,1);
-        end      
+        end
     end
-    assignedAirCPlist(:,7) = 2;
-    assignedGroundCPlist(:,7) = 3;
+    %     end
+    %     assignedAirCPlist(:,7) = 2;       %COMMENTED OUT FOR TEST
+    %     assignedGroundCPlist(:,7) = 3;
     handles.Status.String = ' Mission Running';
     handles.Status.BackgroundColor = [0 1 0];
     
-%     figure('color','w') %TEST PART REMOVE THIS
-%     plot3(assignedAirCPlist(:,3),assignedAirCPlist(:,2),assignedAirCPlist(:,4),'*r')
-%     hold on
-%     plot3(assignedGroundCPlist(:,3),assignedGroundCPlist(:,2),assignedGroundCPlist(:,4),'*r')
-%     hold off
-%     view(90,-90) %TEST PART REMOVE THIS
+    %     figure('color','w') %TEST PART REMOVE THIS
+    %     plot3(assignedAirCPlist(:,3),assignedAirCPlist(:,2),assignedAirCPlist(:,4),'*r')
+    %     hold on
+    %     plot3(assignedGroundCPlist(:,3),assignedGroundCPlist(:,2),assignedGroundCPlist(:,4),'*r')
+    %     hold off
+    %     view(90,-90) %TEST PART REMOVE THIS
     
-    xx = assignedAirCPlist(:,2) + GSCnormLon;
-    yy = assignedAirCPlist(:,3) + GSCnormLat;
-    for n = 1 : numOfAirObservPoints
-        utmzoneM(n,:) = utmzone(1,:);
+    if numOfAirDrones ~= 0
+        xx = assignedAirCPlist(:,2) + GSCnormLon;
+        yy = assignedAirCPlist(:,3) + GSCnormLat;
+        for n = 1 : numOfAirObservPoints
+            utmzoneM(n,:) = utmzone(1,:);
+        end
+        utmzone = utmzoneM;
+        [Lat,Lon] = utm2deg(xx,yy,utmzone);
+        assignedAirCPlist(:,2) = Lon;
+        assignedAirCPlist(:,3) = Lat;
     end
-    utmzone = utmzoneM;
-    [Lat,Lon] = utm2deg(xx,yy,utmzone);   
-    assignedAirCPlist(:,2) = Lon;
-    assignedAirCPlist(:,3) = Lat;
     
-    xx = assignedGroundCPlist(:,2) + GSCnormLon;
-    yy = assignedGroundCPlist(:,3) + GSCnormLat;
-    for n = 1 : numOfGroundObservPoints
-        utmzoneM(n,:) = utmzone(1,:);
+    if numOfGroundDrones ~= 0
+        xx = assignedGroundCPlist(:,2) + GSCnormLon;
+        yy = assignedGroundCPlist(:,3) + GSCnormLat;
+        for n = 1 : numOfGroundObservPoints
+            utmzoneM(n,:) = utmzone(1,:);
+        end
+        utmzone = utmzoneM;
+        [Lat,Lon] = utm2deg(xx,yy,utmzone);
+        assignedGroundCPlist(:,2) = Lon;
+        assignedGroundCPlist(:,3) = Lat;
     end
-    utmzone = utmzoneM;
-    [Lat,Lon] = utm2deg(xx,yy,utmzone);
-    assignedGroundCPlist(:,2) = Lon;
-    assignedGroundCPlist(:,3) = Lat;
-    
     
     % Combines lists
-    AssignedOPList = [assignedAirCPlist ; assignedGroundCPlist];
+    if (numOfAirDrones ~= 0)&&(numOfGroundDrones == 0)
+        AssignedOPList = [assignedAirCPlist];
+    elseif(numOfAirDrones == 0)&&(numOfGroundDrones ~= 0)
+        AssignedOPList = [assignedGroundCPlist];
+    else
+        AssignedOPList = [assignedAirCPlist ; assignedGroundCPlist];
+    end
     
-%     figure('color','w') %TEST PART REMOVE THIS
-%     plot3(AssignedOPList(:,3),AssignedOPList(:,2),AssignedOPList(:,4),'*r')
-%     view(90,-90) %TEST PART REMOVE THIS
     
     % Prints out the document
     ObservDocumentFormat = '%4.8f ,\t %4.8f ,\t %4.4f ,\t %4.4f ,\t %d ,\t %d, \r\n';
-    Dist_List_Text = fopen('Observation_Point_Distribution_Version1.txt','w');   
+    Dist_List_Text = fopen('Observation_Point_Distribution_Version1.txt','w');
     
     A1 = size(ACLocInMeter);
     numOfAirCraft = A1(1,1);
@@ -1975,10 +1986,10 @@ if (StatusMsgGood == 1)
         fprintf(Dist_List_Text, '%d,\t\t\t %4.8f,\t %4.8f,\t %4.6f,\t %4.8f,\t %4.8f,\t %d,\t\t\t\t %d,\t\t\t\t 0,\t\t 0, \r\n',...
             AssignedOPList(n,1),AssignedOPList(n,3),AssignedOPList(n,2),AssignedOPList(n,4),...
             AssignedOPList(n,5),AssignedOPList(n,6),AssignedOPList(n,8),AssignedOPList(n,7));
-    end    
+    end
     fclose(Dist_List_Text)
- 
-    Dist_List_Text2 = fopen('Observation_Point_Distribution_Version2.txt','w');      
+    
+    Dist_List_Text2 = fopen('Observation_Point_Distribution_Version2.txt','w');
     A1 = size(ACLocInMeter);
     numOfAirCraft = A1(1,1);
     fprintf(Dist_List_Text2, 'Number Of Aircraft = %d, \t\t Number Of Air Drones = %d, \t\t Number Of Ground Drones = %d, \r\n', ...
@@ -1995,14 +2006,14 @@ if (StatusMsgGood == 1)
         fprintf(Dist_List_Text2, '%d,\t\t %4.8f,\t %4.8f,\t %4.6f,\t %4.8f,\t %4.8f,\t   %d,\t\t   %d,\t\t   0,\t\t   0, \r\n',...
             AssignedOPList(n,1),AssignedOPList(n,3),AssignedOPList(n,2),AssignedOPList(n,4),...
             AssignedOPList(n,5),AssignedOPList(n,6),AssignedOPList(n,8),AssignedOPList(n,7));
-    end    
+    end
     fclose(Dist_List_Text2)
     
     
-    Dist_List_Text3 = fopen('Observation_Point_Distribution_Version3.txt','w'); 
+    Dist_List_Text3 = fopen('Observation_Point_Distribution_Version3.txt','w');
     A2 = size(AssignedOPList);
     OPListSize =A2(1,1);
-    fprintf(Dist_List_Text3,'NumberOfAC, %d, \r\n',numOfAirCraft);    
+    fprintf(Dist_List_Text3,'NumberOfAC, %d, \r\n',numOfAirCraft);
     fprintf(Dist_List_Text3,'NumberOfAirDrones, %d, \r\n',numOfAirDrones);
     fprintf(Dist_List_Text3,'NumberOfGroundDrones, %d, \r\n',numOfGroundDrones);
     for n = 1 : NumberOfDrones
@@ -2015,18 +2026,21 @@ if (StatusMsgGood == 1)
     for n = 1 : OPListSize
         fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'AirCraftID, %d, \r\n'],AssignedOPList(n,1));
         fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'Lattitude, %4.8f, \r\n'],AssignedOPList(n,2));
-        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'Longitude, %4.8f, \r\n'],AssignedOPList(n,3)); 
-        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'Height, %4.8f, \r\n'],AssignedOPList(n,4));  
-        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'CamAzimuth, %4.6f, \r\n'],AssignedOPList(n,5)); 
-        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'CameraAngle, %4.6f, \r\n'],AssignedOPList(n,6));         
-        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'AssignedDrone, %d, \r\n'],AssignedOPList(n,8));        
-        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'AssignedDroneType, %d,\r\n'],AssignedOPList(n,7));        
-        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'Inspected, 0, \r\n']);      
+        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'Longitude, %4.8f, \r\n'],AssignedOPList(n,3));
+        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'Height, %4.8f, \r\n'],AssignedOPList(n,4));
+        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'CamAzimuth, %4.6f, \r\n'],AssignedOPList(n,5));
+        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'CameraAngle, %4.6f, \r\n'],AssignedOPList(n,6));
+        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'AssignedDrone, %d, \r\n'],AssignedOPList(n,8));
+        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'AssignedDroneType, %d,\r\n'],AssignedOPList(n,7));
+        fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'Inspected, 0, \r\n']);
         fprintf(Dist_List_Text3,['ObservPoint' num2str(n) 'ErrorFlag, 0, \r\n']);
     end
     fclose(Dist_List_Text3)
     
-    Dist_List_Text4 = fopen('Observation_Point_Distribution_Version4.txt','w');      
+    A00 = size(AssignedOPList);
+    NumOfObservPoint = A00(1,1);
+    tic; %TEST LINE CODE
+    Dist_List_Text4 = fopen('Observation_Point_Distribution_Version4.txt','w');
     A1 = size(ACLocInMeter);
     numOfAirCraft = A1(1,1);
     fprintf(Dist_List_Text4, 'Number_Of_Aircraft, %d, \t Number_Of_Air_Drones, %d, \t Number_Of_Ground_Drones, %d, \t Number_of_Observ_Points, %d\r\n', ...
@@ -2047,13 +2061,118 @@ if (StatusMsgGood == 1)
         fprintf(Dist_List_Text4, '%d,\t\t %4.8f,\t %4.8f,\t %4.6f,\t %4.8f,\t %4.8f,\t   %d,\t\t   %d,\t\t   0,\t\t   0, \r\n',...
             AssignedOPList(n,1),AssignedOPList(n,3),AssignedOPList(n,2),AssignedOPList(n,4),...
             AssignedOPList(n,5),AssignedOPList(n,6),AssignedOPList(n,8),AssignedOPList(n,7));
-    end    
+    end
     fclose(Dist_List_Text4)
+    time2write = toc; %TEST LINE CODE
     
+    drawnow
+    MissionComplete = 0;
+    t = 0;
+    DroneStartPoints = DroneDataTemp(:,[1, 2, 3, 4, 6]);
+    RTB = 0;
+    AllHome = 0;
+    handles.Status.String = 'Mission Running';
+    handles.Status.BackgroundColor = [0 1 0];
+    while(MissionComplete == 0)
+        
+        
+        format long
+        Time01 = clock;
+        Time02 = round(Time01(1,6)*100)/100;
+        Timing = rem(Time02,10);
+        if Timing < 1
+            
+            i = 0;
+            
+            fileID2 = fopen('Observation_Point_Distribution_Version4.txt');
+            C_text0 = textscan(fileID2,'%s');
+            fclose(fileID2);
+            % toc % Elapsed time to open and read file is 0.003636 seconds.
+            
+            a = C_text0{1,1};
+            inputDataLength = length(a);
+            coolA =erase(a,',');
+            NumberOfAircraft = str2num(coolA{2,1});
+            NumberOfAirDrones = str2num(coolA{4,1});
+            NumberOfGroundDrones = str2num(coolA{6,1});
+            NumberOfObservPoints = str2num(coolA{8,1});
+            i = 13;
+            for n = 1 : (NumberOfAirDrones+NumberOfGroundDrones)
+                for m = 1 : 5
+                    i = i + 1;
+                    DroneData(n,m) = str2num(coolA{i,1});
+                end
+            end
+            i = i + 10;
+            for n = 1 : NumberOfObservPoints
+                for m = 1 : 10
+                    i = i +1;
+                    ObservPointData(n,m) = str2num(coolA{i,1});
+                end
+            end
+            
+            
+            if mean(ObservPointData(:,9)) ~= 1;
+                MissionComplete = 0;            
+            elseif (mean(ObservPointData(:,9)) == 1)&&(RTB == 0)&&(AllHome  == 0);
+                MissionComplete = 1
+            elseif (mean(ObservPointData(:,9)) == 1)&&(RTB == 1)&&(AllHome  == 0);
+                MissionComplete = 1
+                handles.Status.String = 'Mission Complete: Returning to Base';
+                handles.Status.BackgroundColor = [0 .5 0];
+            elseif (mean(ObservPointData(:,9)) == 1)&&(AllHome  == 1)&&(RTB == 0);
+                MissionComplete = 1
+                handles.Status.String = 'Mission Complete';
+                handles.Status.BackgroundColor = [1 1 1];
+            end
+            
+            %             if mean(ObservPointData(:,10)) ~= 0;
+            %                 for n = 1 : NumberOfObservPoints
+            %
+            %                 end
+            %             end
+        end
+        
+        
+        %% SENDS DRONES TO ORIGINAL START LOCATIONS WHEN MISSION IS DONE OR EMERGENCY STOP
+        if (MissionComplete == 1)&&(RTB ~= 1)
+            Dist_List_Text4A = fopen('Observation_Point_Distribution_Version4.txt','w');
+            A1 = size(ACLocInMeter);
+            numOfAirCraft = A1(1,1);
+            NumOfObservPoint = numOfAirDrones + numOfGroundDrones;
+            fprintf(Dist_List_Text4A, 'Number_Of_Aircraft, %d, \t Number_Of_Air_Drones, %d, \t Number_Of_Ground_Drones, %d, \t Number_of_Observ_Points, %d\r\n', ...
+                numOfAirCraft,numOfAirDrones,numOfGroundDrones,NumOfObservPoint);
+            fprintf(Dist_List_Text4A,'DroneID, \t DroneLat, \t\t DroneLon, \t\t DroneHeight, \t DroneType \r\n')
+            for n = 1 : length(DroneData(:,1))
+                fprintf(Dist_List_Text4A,'%d, \t\t %f, \t %f, \t\t %f, \t %d, \r\n',DroneData(n,1),DroneData(n,2),...
+                    DroneData(n,3),DroneData(n,4),DroneData(n,6));
+            end
+            
+            fprintf(Dist_List_Text4A, 'Aircraft_ID \t OP_Lattitude \t OP_Longitude \t');
+            fprintf(Dist_List_Text4A, ' OP_Height \t Cam_Azimuth \t Cam_Angle \t');
+            fprintf(Dist_List_Text4A, ' Assigned_Drone \t Drone_Type \t Inspected \t Error \r\n');
+            
+            for nDSP = 1 : (length(DroneData(:,1)))
+                fprintf(Dist_List_Text4A, '0,\t\t %4.8f,\t %4.8f,\t %4.6f,\t 0,\t 0,\t   %d,\t\t   %d,\t\t   0,\t\t   0, \r\n',...
+                    DroneStartPoints(nDSP,2),DroneStartPoints(nDSP,3),DroneStartPoints(nDSP,4),...
+                    DroneStartPoints(nDSP,1),DroneStartPoints(nDSP,5));
+            end
+            fclose(Dist_List_Text4)
+%             'test point 2158'
+            RTB = 1;
+            MissionComplete = 0;
+        end
+        if RTB == 1
+            RTBmean = mean(ObservPointData(:,9))
+            if RTBmean == 1
+                AllHome = 1;
+            end
+        end
+    end
     
 end
 
-
+'test point 2166'
 
 % --- Executes during object creation, after setting all properties.
 function MissionDisplay_CreateFcn(hObject, eventdata, handles)
@@ -2062,3 +2181,79 @@ function MissionDisplay_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate MissionDisplay
+
+
+% --- Executes on selection change in PresetInputs.
+function PresetInputs_Callback(hObject, eventdata, handles)
+% hObject    handle to PresetInputs (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns PresetInputs contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from PresetInputs
+if handles.PresetInputs.Value == 2
+    handles.AC_1_Lat.String = '34.906788'; handles.AC_1_Long.String = '-76.892202'; handles.AC_1_Height.String = '0';
+    handles.AC_1_Azimuth.String = '315'; handles.AC_1_Buno.String = '123456'; handles.AC_1_Type.Value = 2;
+    
+    handles.AC_2_Lat.String = '34.907089 '; handles.AC_2_Long.String = '-76.891824 '; handles.AC_2_Height.String = '0';
+    handles.AC_2_Azimuth.String = '315'; handles.AC_2_Buno.String = '951846'; handles.AC_2_Type.Value = 2;
+    
+    handles.AC_3_Lat.String = '34.907360'; handles.AC_3_Long.String = '-76.892857'; handles.AC_3_Height.String = '0';
+    handles.AC_3_Azimuth.String = '315'; handles.AC_3_Buno.String = '789456'; handles.AC_3_Type.Value = 2;
+    
+    handles.AC_4_Lat.String = '34.907661'; handles.AC_4_Long.String = '-76.892508'; handles.AC_4_Height.String = '0';
+    handles.AC_4_Azimuth.String = '315'; handles.AC_4_Buno.String = '741963'; handles.AC_4_Type.Value = 2;
+    
+    handles.AC_5_Lat.String = '34.907390'; handles.AC_5_Long.String = '-76.891442'; handles.AC_5_Height.String = '0';
+    handles.AC_5_Azimuth.String = '315'; handles.AC_5_Buno.String = '258369'; handles.AC_5_Type.Value = 2;
+    
+    handles.Drone_1_Lat.String = '34.9068048'; handles.Drone_1_Long.String = '-76.8929948'; handles.Drone_1_Height.String = '0';
+    handles.Drone_1_ID.String = '1111'; handles.Drone_1_Type.Value = 2;
+    
+    handles.Drone_2_Lat.String = '34.906799'; handles.Drone_2_Long.String = '-76.8934162';
+    handles.Drone_2_Height.String = '0'; handles.Drone_2_ID.String = '2222'; handles.Drone_2_Type.Value = 3;
+    
+    handles.Drone_3_Lat.String = '34.906878'; handles.Drone_3_Long.String = '-76.8934992'; handles.Drone_3_Height.String = '0';
+    handles.Drone_3_ID.String = '3333'; handles.Drone_3_Type.Value = 2;
+    
+    handles.Drone_4_Lat.String = '34.906797'; handles.Drone_4_Long.String = '-76.8930342'; handles.Drone_4_Height.String = '0';
+    handles.Drone_4_ID.String = '4444'; handles.Drone_4_Type.Value = 3;
+    
+    handles.Drone_5_Lat.String = '34.906953'; handles.Drone_5_Long.String = '-76.8930992';
+    handles.Drone_5_Height.String = '0'; handles.Drone_5_ID.String = '5555'; handles.Drone_5_Type.Value = 2;
+    
+    handles.Drone_6_Lat.String = '34.906847'; handles.Drone_6_Long.String = '-76.8931872';
+    handles.Drone_6_Height.String = '0'; handles.Drone_6_ID.String = '6666'; handles.Drone_6_Type.Value = 3;
+    
+    handles.Drone_7_Lat.String = '34.907'; handles.Drone_7_Long.String = '-76.8927972';
+    handles.Drone_7_Height.String = '0'; handles.Drone_7_ID.String = '7777'; handles.Drone_7_Type.Value = 2;
+    
+    handles.Drone_8_Lat.String = '34.906847'; handles.Drone_8_Long.String = '-76.8925552';
+    handles.Drone_8_Height.String = '0'; handles.Drone_8_ID.String = '8888'; handles.Drone_8_Type.Value = 3;
+    
+    handles.Drone_9_Lat.String = '34.906537'; handles.Drone_9_Long.String = '-76.8924395';
+    handles.Drone_9_Height.String = '0'; handles.Drone_9_ID.String = '9999'; handles.Drone_9_Type.Value = 2;
+    
+    handles.Drone_10_Lat.String = '34.906436'; handles.Drone_10_Long.String = '-76.8927435';
+    handles.Drone_10_Height.String = '0';  handles.Drone_10_ID.String = '6969'; handles.Drone_10_Type.Value = 3;
+    
+    handles.Drone_11_Lat.String = '34.907216'; handles.Drone_11_Long.String = '-76.8931872';
+    handles.Drone_11_Height.String = '0'; handles.Drone_11_ID.String = '1234'; handles.Drone_11_Type.Value = 2;
+    
+    handles.GCS_Height.String = '0'; handles.GCS_Lat.String = '34.906483  '; handles.GCS_Lon.String = '-76.892583 ';
+    
+    
+end
+
+
+% --- Executes during object creation, after setting all properties.
+function PresetInputs_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to PresetInputs (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

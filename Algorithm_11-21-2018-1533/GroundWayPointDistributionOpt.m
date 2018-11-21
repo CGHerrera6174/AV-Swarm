@@ -129,15 +129,14 @@ for optCycle = 1 : numberOfAirDrones
             m = m + 1;
             UnsortedGrouping(m,:) = assignedAirCPlist(n,:);
         end
-        1
         UnsortedGrouping = UnsortedGrouping(1:m,:);
     end
     
-    for i = 1 : length(UnsortedGrouping)
+    for i = 1 : length(UnsortedGrouping(:,1))
         UnsortedGrouping(i,9) = i;  
     end
     
-    L = length(UnsortedGrouping);
+    L = length(UnsortedGrouping(:,1));
     listLatextract(1:L,1) = UnsortedGrouping(:,2);
     listLongextract(1:L,1) = UnsortedGrouping(:,3);    
     listHeightextract(1:L,1) = UnsortedGrouping(:,4);
@@ -150,21 +149,21 @@ for optCycle = 1 : numberOfAirDrones
     userConfig.dronenum    = optCycle;
     userConfig.droneID    = UnsortedGrouping(1,8);
     
-%     if (numberOfAirWayPoints <= 175) && (numberOfAirWayPoints >= 50)
-%         userConfig.numIter     = 1e4;
-%     end
-%     if numberOfAirWayPoints > 175
-%         userConfig.numIter     = .2e5;
-%     end
+    %     if (numberOfAirWayPoints <= 175) && (numberOfAirWayPoints >= 50)
+    %         userConfig.numIter     = 1e4;
+    %     end
+    %     if numberOfAirWayPoints > 175
+    %         userConfig.numIter     = .2e5;
+    %     end
     
     PointsPerDrone = numberOfAirWayPoints/numberOfAirDrones;
-    if (PointsPerDrone <= 50)
+    if (PointsPerDrone <= 20)
         userConfig.numIter     = 1.55e3;
-    end    
-    if (PointsPerDrone <= 175) && (PointsPerDrone >= 50)
+    elseif (PointsPerDrone <= 50) && (PointsPerDrone >= 20)
+        userConfig.numIter     = 2.5e3;
+    elseif (PointsPerDrone <= 175) && (PointsPerDrone >= 50)
         userConfig.numIter     = 1.45e4;
-    end
-    if PointsPerDrone > 175
+    elseif PointsPerDrone > 175
         userConfig.numIter     = .2e5;
     end
     userConfig.showProg    = true;
@@ -174,8 +173,8 @@ for optCycle = 1 : numberOfAirDrones
     resultStruct.optRoute;
     
     % ASSIGNS WayPointS IN ORDER SPECIFIED BY TRAVELING SALESMAN ALGORITHM
-    for m =1 : length(UnsortedGrouping)        
-        for n =1 : length(UnsortedGrouping)
+    for m =1 : length(UnsortedGrouping(:,1))        
+        for n =1 : length(UnsortedGrouping(:,1))
             if (resultStruct.optRoute(1,m) == UnsortedGrouping(n,9))
                 temp(m,:) = [UnsortedGrouping(n,[1 2 3 4 5 6 7 8 9])];           
             end
@@ -184,7 +183,7 @@ for optCycle = 1 : numberOfAirDrones
     
     %% FINDS OBSERVATION POINT CLOSEST TO THE DRONE
     CurrentDronePos = AirDroneCoordinates(optCycle,:);
-    for m = 1 : length(temp)
+    for m = 1 : length(temp(:,1))
         a = (CurrentDronePos(1,1) -  temp(m,3))^2;
         b = (CurrentDronePos(1,2) -  temp(m,2))^2;
         distance(m,1) = sqrt(a + b);

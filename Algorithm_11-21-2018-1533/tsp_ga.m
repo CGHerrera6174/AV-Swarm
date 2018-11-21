@@ -61,6 +61,7 @@ function varargout = tsp_ga(varargin)
         hAx = gca;
 %     end
 
+    minDistCount = 0;
     for iter = 1:numIter
         % Evaluate Each Population Member (Calculate Total Distance)
         for p = 1:popSize
@@ -70,11 +71,12 @@ function varargout = tsp_ga(varargin)
             end
             totalDist(p) = d;
         end
-        
+        globalMinCheck = globalMin;
         % Find the Best Route in the Population
         [minDist,index] = min(totalDist);
         distHistory(iter) = minDist;
         hold off
+        minDistCheck = minDist;
         if minDist < globalMin
             globalMin = minDist;
             optRoute = pop(index,:);
@@ -119,6 +121,18 @@ function varargout = tsp_ga(varargin)
             newPop(p-3:p,:) = tmpPop;
         end
         pop = newPop;
+        
+        % Checks to see if path has change in the past  so many iterations.
+        % If it hasn't it breaks out of the for loop to save time
+        if globalMinCheck == minDistCheck
+            minDistCount = minDistCount + 1;
+            if minDistCount > (numIter*.1)
+                break;
+            end
+            
+        else
+            minDistCount = 0;
+        end
         
     end
 

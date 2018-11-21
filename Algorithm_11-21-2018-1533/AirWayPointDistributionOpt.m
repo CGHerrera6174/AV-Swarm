@@ -79,9 +79,6 @@ for ACPAnum = 1 : numberOfAirDrones    % GCPAnum: Air WayPoint Assignment number
     for ACPAnum2 = 1 : equalAirDistrib
         listnum = listnum + 1;
         assignedAirCPlist(listnum,[1 2 3 4 5 6 7]) = airCPassign(listnum,[1 2 3 4 5 6 7]);
-%         assignedAirCPlist(listnum,2) = airCPassign(listnum,2);
-%         assignedAirCPlist(listnum,3) = airCPassign(listnum,3);
-%         assignedAirCPlist(listnum,4) = airCPassign(listnum,4);
         assignedAirCPlist(listnum,8) = droneID(droneIDlistPos,1);
         if listnum == (ax)
             listnum = listnum -1;
@@ -89,27 +86,20 @@ for ACPAnum = 1 : numberOfAirDrones    % GCPAnum: Air WayPoint Assignment number
     end
     if remAirDistrib ~= 0
         listnum = listnum + 1;
-       assignedAirCPlist(listnum,[1 2 3 4 5 6 7]) = airCPassign(listnum,[1 2 3 4 5 6 7]);
-%         assignedAirCPlist(listnum,2) = airCPassign(listnum,2);
-%         assignedAirCPlist(listnum,3) = airCPassign(listnum,3);
-%         assignedAirCPlist(listnum,4) = airCPassign(listnum,4);
+        assignedAirCPlist(listnum,[1 2 3 4 5 6 7]) = airCPassign(listnum,[1 2 3 4 5 6 7]);
         assignedAirCPlist(listnum,8) = droneID(droneIDlistPos,1);
         remAirDistrib = remAirDistrib - 1;
         if listnum == (ax)
             listnum = listnum -1;
         end
     end
-%     droneIDlistPos = droneIDlistPos +1;
-%     if droneIDlistPos > (numberOfAirDrones)
-%         droneIDlistPos = droneIDlistPos -1;
-%     end
+
 end
 
 %% REORDERS PATH OF WayPointS ASSIGNED TO DRONE
 C = 1;
 D= 0;
-% progfig = figure('Name','Path Optimization','Numbertitle','off', ...
-%     'position',[768.2000 429.8000 420.8000 352.8000]);
+
 
 DroneNum = 0;
 for optCycle = 1 : numberOfAirDrones
@@ -123,11 +113,13 @@ for optCycle = 1 : numberOfAirDrones
         UnsortedGrouping = UnsortedGrouping(1:m,:);
     end
     
-    for i = 1 : length(UnsortedGrouping)
+    A00 = size(UnsortedGrouping);
+    
+    for i = 1 : A00(1,1)
         UnsortedGrouping(i,9) = i;  
     end
-    
-    L = length(UnsortedGrouping);
+    A01 = size(UnsortedGrouping);
+    L = A01(1,1);
     listLatextract(1:L,1) = UnsortedGrouping(:,2);
     listLongextract(1:L,1) = UnsortedGrouping(:,3);    
     listHeightextract(1:L,1) = UnsortedGrouping(:,4);
@@ -140,12 +132,7 @@ for optCycle = 1 : numberOfAirDrones
     userConfig.dronenum    = optCycle;
     userConfig.droneID    = UnsortedGrouping(1,8);
     
-%     if (numberOfAirWayPoints <= 175) && (numberOfAirWayPoints >= 50)
-%         userConfig.numIter     = 1e4;
-%     end
-%     if numberOfAirWayPoints > 175
-%         userConfig.numIter     = .2e5;
-%     end
+
     
     PointsPerDrone = numberOfAirWayPoints/numberOfAirDrones;
     if (PointsPerDrone <= 50)
@@ -164,8 +151,10 @@ for optCycle = 1 : numberOfAirDrones
     resultStruct.optRoute;
     
     % ASSIGNS WayPointS IN ORDER SPECIFIED BY TRAVELING SALESMAN ALGORITHM
-    for m =1 : length(UnsortedGrouping)        
-        for n =1 : length(UnsortedGrouping)
+    A02 = size(UnsortedGrouping);
+    UGLength =A02(1,1);
+    for m =1 : UGLength        
+        for n =1 : UGLength
             if (resultStruct.optRoute(1,m) == UnsortedGrouping(n,9))
                 temp(m,:) = [UnsortedGrouping(n,[1 2 3 4 5 6 7 8 9])];           
             end
@@ -174,7 +163,9 @@ for optCycle = 1 : numberOfAirDrones
     
     %% FINDS OBSERVATION POINT CLOSEST TO THE DRONE
     CurrentDronePos = AirDroneCoordinates(optCycle,:);
-    for m = 1 : length(temp)
+    Abc = size(temp);
+    tempLength = Abc(1,1);
+    for m = 1 : tempLength
         a = (CurrentDronePos(1,1) -  temp(m,3))^2;
         b = (CurrentDronePos(1,2) -  temp(m,2))^2;
         distance(m,1) = sqrt(a + b);
@@ -192,31 +183,19 @@ for optCycle = 1 : numberOfAirDrones
         end      
     end
     
-    if foundit > 0
+   if foundit == 1
+        temp3 = temp2;                
+   end
+   if foundit > 1
         temp3 = [ temp2(foundit:A(1,1),:);
                   temp2(1:foundit-1,:)];                 
-    end
+   end
     
     D = D + L;
     SortedGrouping = temp3;
     SortedGroupList(C:D,:) = SortedGrouping(1:L,1:9);
     C = C + L;
-    
-%     % SAVES LONGITUDE TO TXT DECUMENT
-%     DroneNum = DroneNum + 1;
-%     fn1 = sprintf(['longitudeDrone' num2str(DroneNum) '.txt']);
-%     fileLong= fopen(fn1,'w');
-%     for n = 1 : length(SortedGrouping)
-%         fprintf(fileLong,'%f \r\n',SortedGrouping(n,1));
-%     end
-%     fclose(fileLong);
-%     
-%     fn2 = sprintf(['lattitudeDrone' num2str(DroneNum) '.txt']);
-%     fileLatt= fopen(fn2,'w');
-%     for n = 1 : length(SortedGrouping)
-%         fprintf(fileLatt,'%f \r\n',SortedGrouping(n,2));
-%     end
-%     fclose(fileLatt);
+
 
     SortedGrouping = [];
     UnsortedGrouping = [];  % Resets Matrix Size
