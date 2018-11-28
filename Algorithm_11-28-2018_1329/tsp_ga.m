@@ -1,4 +1,9 @@
 function varargout = tsp_ga(varargin)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   This tsp_ga is heavily based off code written by Joseph Kirk
+%   Kirk, Joseph (2014). Traveling Salesman Problem - Genetic Algorithm, 
+%   MATLAB Central File Exchange. Retrieved March 15, 2018.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     if ~nargin
         userConfig = struct();
@@ -39,8 +44,7 @@ function varargout = tsp_ga(varargin)
     popSize     = 4*ceil(popSize/4);
     numIter     = max(1,round(real(numIter(1))));
     showProg    = logical(showProg(1));
-%     showResult  = logical(showResult(1));
-%     showWaitbar = logical(showWaitbar(1));
+
     
     % Initialize the Population
     pop = zeros(popSize,n);
@@ -56,10 +60,8 @@ function varargout = tsp_ga(varargin)
     tmpPop = zeros(4,n);
     newPop = zeros(popSize,n);
 
-%     if showProg
-%         figure('Name','TSP_GA | Current Best Solution','Numbertitle','off');
         hAx = gca;
-%     end
+
 
     minDistCount = 0;
     for iter = 1:numIter
@@ -126,7 +128,7 @@ function varargout = tsp_ga(varargin)
         % If it hasn't it breaks out of the for loop to save time
         if globalMinCheck == minDistCheck
             minDistCount = minDistCount + 1;
-            if minDistCount > (numIter*.1)
+            if minDistCount > (numIter*.15)
                 break;
             end
             
@@ -145,8 +147,7 @@ function varargout = tsp_ga(varargin)
             'showProg',    showProg, ...
             'optRoute',    optRoute, ...
             'minDist',     minDist);
-        
-%             'showResult',  showResult, ...
+
         
         varargout = {resultStruct};
     end

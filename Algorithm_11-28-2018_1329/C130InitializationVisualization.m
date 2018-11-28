@@ -1,29 +1,30 @@
 function  [ObsPointlist] = C130InitializationVisualization(ACLocInMeter)
     % C-130 LOCATION
-    C130BUNO     = [ACLocInMeter(:,1)'];
-    C130LattitM  = [ACLocInMeter(:,2)'];
-    C130LongitM  = [ACLocInMeter(:,3)'];
-    C130HeightM  = [ACLocInMeter(:,4)'];
-    C130AzimuthM = [ACLocInMeter(:,5)'];
+    C130BUNO     = [ACLocInMeter(:,1)']; % Stores AC ID as variable that can be used in this function
+    C130LattitM  = [ACLocInMeter(:,2)']; % Stores AC Lattitude as variable that can be used in this function
+    C130LongitM  = [ACLocInMeter(:,3)']; % Stores AC Longitude as variable that can be used in this function
+    C130HeightM  = [ACLocInMeter(:,4)']; % Stores AC Height Position as variable that can be used in this function
+    C130AzimuthM = [ACLocInMeter(:,5)']; % Stores AC azimuth as variable that can be used in this function
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% PLOTS A C-130 WIRE FRAME FOR VISUALIZTION
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % ACTUAL C130 DIMENSIONS
-    ActLengthFT = 98; %Length in ft
-    ActLengthIN = 9;  %additional inches of length
+    % ACTUAL C130 DIMENSIONS, which will be used for scaling
+    ActLengthFT = 98; % Length in ft of real C130 and will be used for sacaling
+    ActLengthIN = 9;  % additional inches of length of 
     ActWingspanFT = 132; %Wingspane in ft
     ActWingspanIN = 7;  %additional inches of wingspan
     
-    % Compiles Dimensions of C-130 in American
+    % Compiles Dimensions of C-130 in American units. USA USA USA USA USA
     ActLength = ActLengthFT + (ActLengthIN/12);
     ActWingspan = ActWingspanFT + (ActWingspanIN/12);
     
-    % Converts Dimensions to metric
+    % Converts Dimensions of actual C130 to metric
     LengthMeters = ActLength*0.3048;
     WingspanMeters = ActWingspan*0.3048;
     
-    % LOAD C-130 MODEL FROM .dat FILE
+    % LOAD C-130 MODEL FROM .dat FILES. This is the wire frame we are using
+    % to show the C130
     load C130BodyX.dat;
     load C130BodyY.dat;
     load C130BodyZ.dat;
@@ -35,20 +36,19 @@ function  [ObsPointlist] = C130InitializationVisualization(ACLocInMeter)
     modelLength =  max(C130BodyY) - min(C130BodyY);
     % modelWingspan =  max(C130WingsX) - min(C130WingsX)
     
-    % GETS ACTUAL SCALE
+    % GETS THE SCALE OF THE ACTUAL TO THE MODEL
     LengthProportion = LengthMeters/modelLength;
-    % WingspanProportion = WingspanMeters/modelLength;
     
     %% PLOTS AIRCRAFT MODELS, AND POPULATES OBSERVATION POINTS
 C = 1;
 D = 0;
-for ACnum = 1 : length(C130BUNO)
+for ACnum = 1 : length(C130BUNO) % Will run for as many tumes there are aircraft
     C130Lattit(1,1) = C130LattitM(1,ACnum);
     C130Longit(1,1) = C130LongitM(1,ACnum);
     C130Height(1,1) = C130HeightM(1,ACnum);
     azimuth(1,1) = C130AzimuthM(1,ACnum);
     
-    % SCALES MODEL DIMENSIONS TO PROPER MEASURMENTS
+    % SCALES MODEL DIMENSIONS TO PROPER MEASURMENTS, BUILDS THE MODEL, AND PUTS IT IN ITS LOCATION
     FixedC130LengthX = (LengthProportion*C130BodyX) + C130Longit - (WingspanMeters/2) + 17.9;
     FixedC130LengthY = (LengthProportion*C130BodyY) + C130Lattit - LengthMeters - 1.25;
     FixedC130LengthZ = (LengthProportion*C130BodyZ) + C130Height + .48;
@@ -92,6 +92,7 @@ for ACnum = 1 : length(C130BUNO)
         07, 07, 07, 07, 07, 07, 07, 07, 07, 07, 07, 07, 07, 07, 12, 12, 12, 12, 12, ...
         12, 11, 11, 11] + C130Height;
     
+    % ROTATES THE OBSERVATION POINTS BASED OFF THE AC AZIMUTH
     [ObservWPx,ObservWPy] = C130RotationObsPoint(C130Lattit,C130Longit,azimuth,ObservWPx,ObservWPy);
       
     % PLOTS C-130 OBSERVATION POINTS WITH A TOP VIEW
@@ -100,11 +101,14 @@ for ACnum = 1 : length(C130BUNO)
     plot3(0,0,0,'xy','linewidth',3)
     
     hold on;
-    % MAKE AIRWAYPOINT DISTRIBUTUION LIST FROM OBSERVATION POINTS
+    
+    % MAKE AIRWAYPOINT DISTRIBUTUION LIST FROM OBSERVATION POINTS BY ADDING
+    % THIS GROUP OF OBSERVATION POINTS TO THE END OF THE CURRENT MASTER
+    % LIST "ObsPointList"
     L = length(ObservWPx);
-    D = D + L;
+    D = D + L; % Length of rows that will be added to current list
     ObsPointlist(C:D,1) = ObservWPx'; % Observation point Longitudes
     ObsPointlist(C:D,2) = ObservWPy'; % Observation point Lattitudes
     ObsPointlist(C:D,3) = ObservWPz'; % Observation point Heights
-    C = C + L;
+    C = C + L; % In next iteration, the added group of points will be added starting at C
 end

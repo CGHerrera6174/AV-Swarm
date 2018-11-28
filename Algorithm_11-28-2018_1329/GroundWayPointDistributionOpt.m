@@ -1,5 +1,7 @@
 function [assignedGroundCPlist] = GroundWayPointDistributionOpt(numOfGroundObservPoints, GroundObservPointList, GroundDroneStartpoint,numOfGroundDrones, GroundDroneLocInMeters);               
 %% PART THAT CONVERTS AIR CODE TO GROUND CODE
+% Same as airway point distribution ( Better comments in that one) but
+% converted for the ground drones 
 numOfAirObservPoints = numOfGroundObservPoints;
 ObsPointlist = GroundObservPointList;
 AirDroneStartpoint = GroundDroneStartpoint;
@@ -15,31 +17,7 @@ numberOfAirDrones = numOfAirDrones;
 AirDroneCoordinates = AirDroneLocInMeters(:, [2 3 4 1 6]);
 airDroneIDs = AirDroneLocInMeters(:, 1);
 format long;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% AirWayPointDistribution:     This function takes a list of WayPoints,
-% drone positions, and IDs to distribute the chckpoints amongs the drones
-% through the use of sectors.
-%
-%
-% INPUT FORMAT:     numberOfAirWayPoints = INTEGER;
-%                   WayPointlist = [ 1lat 1long 1height;
-%                                      2lat 2long 2height;
-%                                      3lat 3long 3height;
-%                                      ..................;
-%                                      Nlat Nlong Nheight];
-%                   startpoint = [SPlat SPlong SPheight]; %Calculated with
-%                                              funtion 'startpointFinder.m'
-%                   numberOfAirDrones = INTEGER;
-%                   airDroneIDs = [ Drone1ID Drone2ID ... DroneNID ];
-%
-%
-% OUTPUT FORMAT:
-% assignedAirCPlist = [CP1lat, CP1long, CP1height, CP1angleFromSP, DroneID;
-%                      CP2lat, CP2long, CP2height, CP2angleFromSP, DroneID;
-%                      CP3lat, CP3long, CP3height, CP3angleFromSP, DroneID;
-%                       .................................................
-%                      CPNlat, CPNlong, CPNheight, CP1angleFromSP, DroneID]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %% CALCULATE ANGLE FROM CHECK POINT TO STARTPOINT AND SORTS THEM
 CPangnum = 0;

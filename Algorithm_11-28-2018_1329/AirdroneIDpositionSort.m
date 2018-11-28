@@ -1,6 +1,9 @@
-function [GroundDroneLocInMeters] = GrounddroneIDpositionSort(GroundDroneLocInMeters, GroundObservPointCenter);
-AirDroneLocInMeters = GroundDroneLocInMeters;
-AirObservPointCenter = GroundObservPointCenter;
+function [AirDroneLocInMeters] = AirdroneIDpositionSort(AirDroneLocInMeters, AirObservPointCenter);
+%% Sorts Drones depending on where their center point is compared to the observation points. Hopefully to prevent collision at the begining
+% angle between each drone and drone center point is calculated. If the
+% drone center point is west of Observation point Center, the drones are
+% sorted by their angles in descending order. If east of observ point
+% center they are ordered in ascending order
 
 % AirDroneLocInMeters(:,1)' = [11 10 63];
 % AirDroneCoordinates = [ 06 05 0; 01 06 0; 20 02 0];
@@ -44,7 +47,7 @@ elseif (AirObservPointCenter(1,1) >= Sx)
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 AirDroneLocInMeters = sortedByPythagoris;
-GroundDroneLocInMeters = AirDroneLocInMeters;
+
 
 
 end

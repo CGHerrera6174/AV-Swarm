@@ -1,7 +1,7 @@
-function [FixedC130WingsX,FixedC130WingsY] = C130RotationWingsModel(C130Lattit,C130Longit,azimuth,FixedC130WingsX,FixedC130WingsY)
+function [ObservWPx,ObservWPy] = C130RotationObsPoint(C130Lattit,C130Longit,azimuth,ObservWPx,ObservWPy)
 % define the x- and y-data for the original line we would like to rotate
-x = FixedC130WingsX';
-y = FixedC130WingsY';
+x = ObservWPx;
+y = ObservWPy;
 
 % create a matrix of these points, which will be useful in future calculations
 v = [x;y];
@@ -22,14 +22,12 @@ s = v - center;     % shift points in the plane so that the center of rotation i
 so = R*s;           % apply the rotation about the origin
 vo = so + center;   % shift again so the origin goes back to the desired center of rotation
 
+
 % pick out the vectors of rotated x- and y-data
 x_rotated = vo(1,:);
 y_rotated = vo(2,:);
-% plot(x, y, 'k-', x_rotated, y_rotated, 'r-', x_center, y_center, 'bo');
-% axis equal
 
-
-FixedC130WingsX = x_rotated;
-FixedC130WingsY = y_rotated ;
+ObservWPx = x_rotated;
+ObservWPy = y_rotated ;
 
 end
